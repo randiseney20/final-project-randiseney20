@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Soldier Observation Tool</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      
+      <ion-card-subtitle></ion-card-subtitle>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="credentials" (ngSubmit)="login()">
+        <ion-item fill="solid" class="ion-margin-bottom">
+          <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+          <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors"> Email is invalid </ion-note>
+        </ion-item>
+        <ion-item fill="solid" class="ion-margin-bottom">
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+          <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors"> Password must be 6 characters </ion-note>
+        </ion-item>
+
+        <ion-button expand="full" type="submit" >Login</ion-button>
+        <ion-button expand="full" type="button" (click)="register()">Create Account</ion-button>
+      </form>
+      
+        <img class="logoImage" src="\assets\vikingCatAppLogo.PNG" alt="vikingcatapplogo">
+      
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>
