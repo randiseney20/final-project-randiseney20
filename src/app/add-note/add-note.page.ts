@@ -47,7 +47,7 @@ export class AddNotePage {
         },
         {
          name: 'cell',
-         placeholder: 'Contact Number',
+         placeholder: 'Soldier email',
          type: 'text'
        },
        {
