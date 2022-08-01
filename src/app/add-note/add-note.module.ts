@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AddNotePageRoutingModule } from './add-note-routing.module';
 
-import { AddNotePage } from './add-note.page';
+//import { AddNotePage } from './add-note.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { AddNotePage } from './add-note.page';
     IonicModule,
     AddNotePageRoutingModule
   ],
-  declarations: [AddNotePage]
+  declarations: []
 })
 export class AddNotePageModule {}
