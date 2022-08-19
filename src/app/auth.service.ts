@@ -15,9 +15,11 @@ export class AuthService {
         email,
         password
       );
+      console.log(user)
       return user;
     } catch (e) {
-      return null;
+      console.log(e.code)
+      return e.code;
     }
   }
   async login({email, password}){
@@ -29,7 +31,7 @@ export class AuthService {
       );
       return user;
     } catch (e) {
-      return null;
+      return  e.code;
     }
   }
 

@@ -7,28 +7,53 @@
 <ion-content class="ion-padding">
   <ion-card>
     <ion-card-header>
-      
-      <ion-card-subtitle></ion-card-subtitle>
-      <ion-card-title>Login</ion-card-title>
+      <img class="logoImage" src="\assets\vikingCatAppLogo.PNG" alt="vikingcatapplogo">
+
+      <ion-card-title *ngIf="isLogin">Login</ion-card-title>
+      <ion-card-title *ngIf="!isLogin">Register</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <form [formGroup]="credentials" (ngSubmit)="login()">
+      <form *ngIf="isLogin" [formGroup]="credentials" (ngSubmit)="login()">
         <ion-item fill="solid" class="ion-margin-bottom">
           <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
           <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors"> Email is invalid </ion-note>
         </ion-item>
         <ion-item fill="solid" class="ion-margin-bottom">
           <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-          <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors"> Password must be 6 characters </ion-note>
+          <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors"> Password must be 6
+            characters </ion-note>
         </ion-item>
 
-        <ion-button expand="full" type="submit" >Login</ion-button>
-        <ion-button expand="full" type="button" (click)="register()">Create Account</ion-button>
+        <ion-button expand="full" type="submit">Login</ion-button>
+        <br>
+        <br>
+        <h6>
+          If you are a new User <a expand="full" type="button" (click)="isLogin = !isLogin">Create Account</a>
+        </h6>
       </form>
-      
-        <img class="logoImage" src="\assets\vikingCatAppLogo.PNG" alt="vikingcatapplogo">
-      
+
+      <form *ngIf="!isLogin" [formGroup]="registerForm" (ngSubmit)="register()">
+        <ion-item fill="solid" class="ion-margin-bottom">
+          <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+          <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors"> Email is invalid </ion-note>
+        </ion-item>
+        <ion-item fill="solid" class="ion-margin-bottom">
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+          <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors"> Password must be 6
+            characters </ion-note>
+        </ion-item>
+
+        <ion-button expand="full" type="submit">Register</ion-button>
+        <br>
+        <br>
+
+        <h6>
+          Already Registered User <a expand="full" type="button" (click)="isLogin = !isLogin">Login</a>
+        </h6>
+      </form>
+
+
     </ion-card-content>
 
   </ion-card>

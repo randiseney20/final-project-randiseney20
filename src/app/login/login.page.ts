@@ -14,6 +14,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginPage implements OnInit {
   credentials: FormGroup;
+  registerForm: FormGroup;
+  isLogin = true;
 
   constructor(
     private router: Router,
@@ -34,19 +36,23 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
   async register(){
     const loading = await this.loadingController.create();
     await loading.present();
 
-    const user = await this.authService.register(this.credentials.value);
+    const user = await this.authService.register(this.registerForm.value);
     await loading.dismiss();
-
-    if(user){
+    console.log(user)
+    if(user.user){
       this.router.navigateByUrl('/home', {replaceUrl: true});
     } else{
-      this.showAlert('Registration failed', 'Please try again!');
+      this.showAlert('Registration failed', user);
     }
   }
 
@@ -55,11 +61,11 @@ export class LoginPage implements OnInit {
     await loading.present();
     const user = await this.authService.login(this.credentials.value);
     await loading.dismiss();
-
-    if(user){
+    console.log(user.user)
+    if(user.user){
       this.router.navigateByUrl('/home', {replaceUrl: true});
     } else{
-      this.showAlert('Login failed', 'Please try again!');
+      this.showAlert('Login failed', user);
     }
   }
   async showAlert(header, message){
