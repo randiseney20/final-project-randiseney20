@@ -1,11 +1,17 @@
 <ion-header [translucent]="false">
-  <ion-toolbar>
+  <ion-toolbar >
     <ion-title>
       Soldier Observation Tool
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="addNote()" color="success">Add</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" color="warning">Logout</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-    
+
 <ion-content class="ion-padding">
   <div class="preview">
     <ion-avatar (click)="changeImage()">
@@ -19,21 +25,14 @@
   </div>
   <ion-card color="dark">
     <ion-card-content>
-  
+
   Use this app to take notes on your Soldiers whenever you make a useful observation for their evaluation.
 </ion-card-content>
- 
-  <ion-toolbar >
-    <ion-buttons slot="start">
-      <ion-button (click)="addNote()" color="success">Add Soldier</ion-button>
-    </ion-buttons>
-    <ion-buttons slot="start">
-      <ion-button (click)="logout()" color="warning">Logout</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+
+
 </ion-card>
- 
+
   <img class="logoImage" src="\assets\vikingCatAppLogo.PNG" alt="vikingcatapplogo">
-  
+
 
 </ion-content>

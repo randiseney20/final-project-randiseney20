@@ -15,8 +15,8 @@
       <ion-input [(ngModel)]="note.rank" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input [(ngModel)]="note.email" ></ion-input>
+      <ion-label position="stacked">Cell</ion-label>
+      <ion-input [(ngModel)]="note.cell" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Observations</ion-label>
@@ -27,10 +27,6 @@
 <ion-button expand="block" color="success" (click)="updateNote()">
   <ion-icon name="save" slot="start"></ion-icon>
   Update
-</ion-button>
-<ion-button expand="block" color="warning" (click)="emailNote()">
-  <ion-icon name="share" slot="start"></ion-icon>
-  Share
 </ion-button>
 <ion-button expand="block" color="danger" (click)="deleteNote()">
   <ion-icon name="trash" slot="start"></ion-icon>

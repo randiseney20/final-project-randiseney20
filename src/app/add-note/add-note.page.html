@@ -1,10 +1,21 @@
-<ion-card >
-  <ion-card-header>
-    <ion-card-subtitle></ion-card-subtitle>
-    <ion-card-title>Soldier List</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-   
+
+  <ion-header [translucent]="false">
+    <ion-toolbar >
+      <ion-title>
+        Soldier List
+      </ion-title>
+      <ion-buttons slot="start">
+        <ion-button (click)="goHome()" color="primary">Home</ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="logout()" color="warning">Logout</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-content>
+
     <ion-list>
       <ion-item *ngFor="let note of notes" (click)="openNote(note)">
         <ion-label>
@@ -15,15 +26,6 @@
 
 
 
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button (click)="goHome()" color="primary">Home</ion-button>
-      </ion-buttons>
-      <ion-buttons slot="start">
-        <ion-button (click)="logout()" color="warning">Logout</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button color="success" (click)="addNote()">
         <ion-icon name="add"></ion-icon>
@@ -31,10 +33,4 @@
     </ion-fab>
 
     <img class="logoImage" src="\assets\vikingCatAppLogo.PNG" alt="vikingcatapplogo">
-  </ion-card-content>
-</ion-card>
-
-
-
-
-
+  </ion-content>

@@ -5,6 +5,7 @@ import { DataService, Note} from '../services/data.service';
 import { ModalPage } from '../modal/modal.page';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import {Auth} from '@angular/fire/auth';
 
 
 @Component({
@@ -22,11 +23,17 @@ export class AddNotePage {
     private modaCtrl: ModalController,
     private cd: ChangeDetectorRef,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private auth: Auth
     ) {
       this.dataService.getNotes().subscribe(res => {
+        this.notes = [];
         console.log(res);
-        this.notes = res;
+        res.forEach(element => {
+          if(element.createdBy === this.auth.currentUser.uid) {
+            this.notes.push(element);
+          }
+       });
         this.cd.detectChanges();
       });
    }
@@ -46,7 +53,7 @@ export class AddNotePage {
           type: 'text'
         },
         {
-         name: 'email',
+         name: 'cell',
          placeholder: 'Soldier email',
          type: 'text'
        },
@@ -64,7 +71,7 @@ export class AddNotePage {
         {
           text: 'Add',
           handler: (res) => {
-            this.dataService.addNote({name: res.name, rank: res.rank, email: res.email, observation: res.observation});
+            this.dataService.addNote({name: res.name, rank: res.rank, cell: res.cell, observation: res.observation, createdBy: this.auth.currentUser.uid});
           }
         }
       ]
@@ -89,5 +96,5 @@ export class AddNotePage {
   async logout() {
     await this.authService.logout();
     this.router.navigateByUrl('/', {replaceUrl: true});
-  }  
+  }
 }

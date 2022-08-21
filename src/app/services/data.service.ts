@@ -7,8 +7,9 @@ export interface Note {
   id?: string;
   name: string;
   rank: string;
-  email: string;
+  cell: string;
   observation: string;
+  createdBy: string;
 }
 
 @Injectable({
@@ -19,8 +20,9 @@ export class DataService {
   constructor(
     private firestore: Firestore
   ) { }
+
   getNotes(): Observable<Note []> {
-    const notesRef = collection(this.firestore, 'notes')
+    const notesRef = collection(this.firestore, 'notes');
     return collectionData(notesRef, {idField: 'id'}) as Observable<Note[]>;
   }
 
@@ -41,12 +43,6 @@ export class DataService {
 
   updateNote(note: Note){
     const noteDocRef = doc(this.firestore, `notes/${note.id}`);
-    return updateDoc(noteDocRef, {name: note.name, rank: note.rank, email: note.email, observation: note.observation});
+    return updateDoc(noteDocRef, {name: note.name, rank: note.rank, cell: note.cell, observation: note.observation});
   }
-  
 }
-
-  /* shareNote(note: Note){
-    const noteDocRef = doc(this.firestore, `notes/${note.id}`);
-    return docData(noteDocRef, { observation: ''}) as Observable<Note>;
-} */
