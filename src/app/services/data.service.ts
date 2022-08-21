@@ -7,7 +7,7 @@ export interface Note {
   id?: string;
   name: string;
   rank: string;
-  cell: string;
+  email: string;
   observation: string;
 }
 
@@ -41,6 +41,12 @@ export class DataService {
 
   updateNote(note: Note){
     const noteDocRef = doc(this.firestore, `notes/${note.id}`);
-    return updateDoc(noteDocRef, {name: note.name, rank: note.rank, cell: note.cell, observation: note.observation});
+    return updateDoc(noteDocRef, {name: note.name, rank: note.rank, email: note.email, observation: note.observation});
   }
+  
 }
+
+  /* shareNote(note: Note){
+    const noteDocRef = doc(this.firestore, `notes/${note.id}`);
+    return docData(noteDocRef, { observation: ''}) as Observable<Note>;
+} */

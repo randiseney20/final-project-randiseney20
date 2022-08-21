@@ -46,7 +46,7 @@ export class AddNotePage {
           type: 'text'
         },
         {
-         name: 'cell',
+         name: 'email',
          placeholder: 'Soldier email',
          type: 'text'
        },
@@ -64,7 +64,7 @@ export class AddNotePage {
         {
           text: 'Add',
           handler: (res) => {
-            this.dataService.addNote({name: res.name, rank: res.rank, cell: res.cell, observation: res.observation});
+            this.dataService.addNote({name: res.name, rank: res.rank, email: res.email, observation: res.observation});
           }
         }
       ]
